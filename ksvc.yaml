@@ -1,0 +1,14 @@
+apiVersion: serving.knative.dev/v1alpha1
+kind: Service
+metadata:
+  name: productpage
+spec:
+  template:
+    spec:
+      containers:
+      - image: ochorny/productpage
+        ports:
+        - containerPort: 9080
+         #env:
+         #- name: SERVICES_DOMAIN # The environment variable printed out by the sample app
+         #value: "default.svc.cluster.local"

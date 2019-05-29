@@ -22,4 +22,4 @@ spec:
           value: ochorny/bookinfo-productpage
     params:
       - name: path
-        description: ./deploy-productpage.yaml
+        description: ./ksvc.yaml

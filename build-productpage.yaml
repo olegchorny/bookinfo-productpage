@@ -1,0 +1,24 @@
+apiVersion: tekton.dev/v1alpha1
+kind: TaskRun
+metadata:
+  name: build-productpage
+spec:
+  serviceAccount: build-bot
+  taskRef:
+    name: kaniko
+  inputs:
+    resources:
+    - name: source
+      resourceSpec:
+        type: git
+        params:
+        - name: url
+          value: https://github.com/olegchorny/bookinfo-productpage
+  outputs:
+    resources:
+    - name: image
+      resourceSpec:
+        type: image
+        params:
+        - name: url
+          value: ochorny/bookinfo-productpage

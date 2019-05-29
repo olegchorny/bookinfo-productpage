@@ -1,0 +1,25 @@
+apiVersion: tekton.dev/v1alpha1
+kind: TaskRun
+metadata:
+  name: deploy-productpage
+spec:
+# serviceAccount: build-bot
+  taskRef:
+    name: deploy-using-kubectl
+  inputs:
+    resources:
+    - name: source
+      resourceSpec:
+        type: git
+        params:
+        - name: url
+          value: https://github.com/olegchorny/bookinfo-productpage
+    - name: image
+      resourceSpec:
+        type: image
+        params:
+        - name: url
+          value: ochorny/bookinfo-productpage
+    params:
+      - name: path
+        description: ./deploy-productpage.yaml

@@ -22,4 +22,8 @@ spec:
           value: ochorny/bookinfo-productpage
     params:
       - name: path
-        description: ./ksvc.yaml
+        value: /workspace/source/ksvc.yaml #configure: may change according to your source
+      - name: yqArg
+        value: "-d0"
+      - name: yamlPathToImage
+        value: "spec.template.spec.containers[0].image"

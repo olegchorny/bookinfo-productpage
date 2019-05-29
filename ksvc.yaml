@@ -9,6 +9,6 @@ spec:
       - image: ochorny/productpage
         ports:
         - containerPort: 8080
-         #env:
-         #- name: SERVICES_DOMAIN # The environment variable printed out by the sample app
-         #value: "default.svc.cluster.local"
+        env:
+          - name: SERVICES_DOMAIN # The environment variable printed out by the sample app
+          value: "default.svc.cluster.local"

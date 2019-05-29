@@ -12,4 +12,4 @@ spec:
         - containerPort: 8080
         env:
           - name: SERVICES_DOMAIN # The environment variable printed out by the sample app
-          value: "bookinfo.svc.cluster.local"
+            value: "bookinfo.svc.cluster.local"

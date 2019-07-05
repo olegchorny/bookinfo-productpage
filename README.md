@@ -1,1 +1,2 @@
 # bookinfo-productpage
+Komet demo

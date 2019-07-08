@@ -1,3 +1,3 @@
 # bookinfo-productpage
 Komet demo
-webhook enabled
+webhook enabled, github build works

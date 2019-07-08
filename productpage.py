@@ -205,7 +205,7 @@ def index():
 
 @app.route('/health')
 def health():
-    return 'OK: Product page is healthy! GitHub registry push and pull works :)'
+    return 'OK: Product page is healthy! GitHub registry push and pull works! :)'
 
 
 @app.route('/login', methods=['POST'])

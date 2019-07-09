@@ -58,25 +58,25 @@ Bootstrap(app)
 servicesDomain = "" if (os.environ.get("SERVICES_DOMAIN") == None) else "." + os.environ.get("SERVICES_DOMAIN")
 
 details = {
-    "name" : "http://details{0}".format(servicesDomain),
+    "name" : "http://bookinfo-details{0}".format(servicesDomain),
     "endpoint" : "bookinfo-details",
     "children" : []
 }
 
 ratings = {
-    "name" : "http://ratings{0}".format(servicesDomain),
+    "name" : "http://bookinfo-ratings{0}".format(servicesDomain),
     "endpoint" : "bookinfo-ratings",
     "children" : []
 }
 
 reviews = {
-    "name" : "http://reviews{0}".format(servicesDomain),
+    "name" : "http://bookinfo-reviews{0}".format(servicesDomain),
     "endpoint" : "bookinfo-reviews",
     "children" : [ratings]
 }
 
 productpage = {
-    "name" : "http://details{0}".format(servicesDomain),
+    "name" : "http://bookinfo-details{0}".format(servicesDomain),
     "endpoint" : "bookinfo-details",
     "children" : [details, reviews]
 }

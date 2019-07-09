@@ -59,7 +59,7 @@ servicesDomain = "" if (os.environ.get("SERVICES_DOMAIN") == None) else "." + os
 
 details = {
     "name" : "http://bookinfo-details{0}".format(servicesDomain),
-    "endpoint" : "bookinfo-details",
+    "endpoint" : "details",
     "children" : []
 }
 

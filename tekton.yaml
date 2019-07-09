@@ -19,6 +19,7 @@ spec:
   params:
     - name: url
       value: docker.io/ochorny/bookinfo-productpage
+      #value: registry.svc.cluster.local/bookinfo-productpage
 ---
 apiVersion: tekton.dev/v1alpha1
 kind: Pipeline

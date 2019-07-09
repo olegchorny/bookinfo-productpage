@@ -65,19 +65,19 @@ details = {
 
 ratings = {
     "name" : "http://bookinfo-ratings{0}".format(servicesDomain),
-    "endpoint" : "bookinfo-ratings",
+    "endpoint" : "ratings",
     "children" : []
 }
 
 reviews = {
     "name" : "http://bookinfo-reviews{0}".format(servicesDomain),
-    "endpoint" : "bookinfo-reviews",
+    "endpoint" : "reviews",
     "children" : [ratings]
 }
 
 productpage = {
     "name" : "http://bookinfo-details{0}".format(servicesDomain),
-    "endpoint" : "bookinfo-details",
+    "endpoint" : "details",
     "children" : [details, reviews]
 }
 

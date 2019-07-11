@@ -4,4 +4,4 @@ webhook enabled, github build works, push works
 working on successfull pull from github registry
 
 test for dynamic DNS
-demo for PR and branches
+demo for PR and branches.

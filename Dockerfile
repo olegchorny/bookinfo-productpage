@@ -24,7 +24,7 @@ COPY productpage.py /opt/microservices/
 COPY tests/unit/* /opt/microservices/
 COPY templates /opt/microservices/templates
 COPY requirements.txt /opt/microservices/
-ENV SERVICES_DOMAIN=stage.komet.plerion.io
+#ENV SERVICES_DOMAIN=master.komet.plerion.io
 EXPOSE 8080
 WORKDIR /opt/microservices
 #RUN python -m unittest discover

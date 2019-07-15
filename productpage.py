@@ -205,7 +205,7 @@ def index():
 
 @app.route('/health')
 def health():
-    return 'Product page is healthy! GitHub registry push and pull works'
+    return 'Product page is healthy! komet 0.4.4'
 
 
 @app.route('/login', methods=['POST'])

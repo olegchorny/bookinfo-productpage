@@ -1,2 +1,2 @@
 # bookinfo-productpage
-0.4.3 test
+0.4.4 test

@@ -29,7 +29,8 @@ jobs:
         sudo pip install wheel
         sudo pip install python-openstackclient
         sudo pip install python-magnumclient
-        export OS_PROJECT_ID=6d88ff42d0784a64a47a40ecd8909ee6    
+        export OS_AUTH_URL=secrets.OS_AUTH_URL
+        export OS_PROJECT_ID=secrets.OS_PROJECT_ID
         export OS_PROJECT_NAME=secrets.OS_PROJECT_NAME
         export OS_USER_DOMAIN_NAME=secrets.OS_USER_DOMAIN_NAME
         if [ -z "$OS_USER_DOMAIN_NAME" ]; then unset OS_USER_DOMAIN_NAME; fi

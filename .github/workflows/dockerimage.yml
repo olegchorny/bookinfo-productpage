@@ -11,7 +11,7 @@ jobs:
 #        password: ${{ secrets.DOCKER_PASSWORD }}
    - uses: actions/checkout@master
    - run: |
-       docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+       docker login docker.pkg.github.com -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
        docker build . -t docker.pkg.github.com/olegchorny/bookinfo-productpage/bookinfo-productpage:${{ github.sha }}
        docker push docker.pkg.github.com/olegchorny/bookinfo-productpage/bookinfo-productpage:${{ github.sha }}
 #     runs-on: ubuntu-latest

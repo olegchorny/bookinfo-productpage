@@ -16,12 +16,12 @@ jobs:
    - name: Build
      run: |
        sha=${GITHUB_SHA:0:7}
-       docker build -t docker.pkg.github.com/olegchorny/bookinfo-productpage/bookinfo-productpage:$sha .
+       docker build -t docker.pkg.github.com/$GITHUB_REPOSITORY/bookinfo-productpage:$sha .
    - name: Push
      run: |
        sha=${GITHUB_SHA:0:7}
        docker login docker.pkg.github.com -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-       docker push docker.pkg.github.com/olegchorny/bookinfo-productpage/bookinfo-productpage:$sha
+       docker push docker.pkg.github.com/$GITHUB_REPOSITORY/bookinfo-productpage:$sha
 #     runs-on: ubuntu-latest
 #     steps:
 #     - name: Publish to Registry

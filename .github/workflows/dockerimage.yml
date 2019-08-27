@@ -47,6 +47,7 @@ jobs:
         openstack coe cluster list
         export OS_CLUSTER_NAME=${{ secrets.CLUSTER_NAME }}
         cd ~
+        pwd
         openstack coe cluster config knative
 #     runs-on: ubuntu-latest
 #     steps:

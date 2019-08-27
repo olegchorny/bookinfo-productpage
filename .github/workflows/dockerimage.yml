@@ -26,9 +26,11 @@ jobs:
        docker push docker.pkg.github.com/$GITHUB_REPOSITORY/$app:$sha
    - name: OpenStack
      run: |
+        apt-get remove python-cryptography
+        apt-get remove python3-cryptography
         pip install wheel
         pip install python-openstackclient
-        pip install -vv python-magnumclient
+        pip install python-magnumclient
    
 #     runs-on: ubuntu-latest
 #     steps:

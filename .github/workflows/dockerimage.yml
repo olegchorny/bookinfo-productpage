@@ -45,7 +45,8 @@ jobs:
         export OS_INTERFACE=public
         export OS_IDENTITY_API_VERSION=3
         openstack coe cluster list
-        openstack coe cluster config knative
+        mkdir kubernetes
+        openstack coe cluster config --dir kubernetes knative
 #     runs-on: ubuntu-latest
 #     steps:
 #     - name: Publish to Registry

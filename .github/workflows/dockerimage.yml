@@ -4,11 +4,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-    - name: Publish to Registry
-      uses: elgohr/Publish-Docker-Github-Action@master
+    - uses: azure/container-actions/docker-login@master
       with:
-        name: myDocker/repository
+        login-server: docker.pkg.github.com
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
-        registry: "docker.pkg.github.com"
+    
+    - run: |
+        docker build . -t docker.pkg.github.com/olegchorny/bookinfo-productpage/bookinfo-productpage:${{ github.sha }}
+        docker push docker.pkg.github.com/olegchorny/bookinfo-productpage/bookinfo-productpage:${{ github.sha }}

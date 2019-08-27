@@ -26,6 +26,7 @@ jobs:
        docker push docker.pkg.github.com/$GITHUB_REPOSITORY/$app:$sha
    - name: OpenStack
      run: |
+        pip install wheel
         pip install python-openstackclient
         pip install python-magnumclient
    

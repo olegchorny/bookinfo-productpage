@@ -12,8 +12,8 @@ jobs:
    - uses: actions/checkout@master
    - run: |
        docker login docker.pkg.github.com -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-       docker build . -t docker.pkg.github.com/olegchorny/bookinfo-productpage/bookinfo-productpage:${{ github.sha }}
-       docker push docker.pkg.github.com/olegchorny/bookinfo-productpage/bookinfo-productpage:${{ github.sha }}
+       docker build . -t docker.pkg.github.com/olegchorny/bookinfo-productpage/bookinfo-productpage:latest
+       docker push docker.pkg.github.com/olegchorny/bookinfo-productpage/bookinfo-productpage:latest
 #     runs-on: ubuntu-latest
 #     steps:
 #     - name: Publish to Registry

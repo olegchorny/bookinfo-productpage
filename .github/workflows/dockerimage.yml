@@ -46,6 +46,7 @@ jobs:
         export OS_IDENTITY_API_VERSION=3
         openstack coe cluster list
         export OS_CLUSTER_NAME=${{ secrets.CLUSTER_NAME }}
+        cd ~
         openstack coe cluster config knative
 #     runs-on: ubuntu-latest
 #     steps:

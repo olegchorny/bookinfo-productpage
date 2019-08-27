@@ -1,4 +1,4 @@
-name: Build and Push Docker
+name: VKS - build, push and deploy.
 on:
   push:
     branches:
@@ -24,6 +24,11 @@ jobs:
        app="${GITHUB_REPOSITORY#*/}"
        docker login docker.pkg.github.com -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
        docker push docker.pkg.github.com/$GITHUB_REPOSITORY/$app:$sha
+   - name: OpenStack
+     run: |
+        pip install python-openstackclient
+        pip install python-magnumclient
+   
 #     runs-on: ubuntu-latest
 #     steps:
 #     - name: Publish to Registry

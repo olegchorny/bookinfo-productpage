@@ -29,24 +29,23 @@ jobs:
         sudo pip install wheel
         sudo pip install python-openstackclient
         sudo pip install python-magnumclient
-        sudo OS_AUTH_URL=${{ secrets.AUTH_URL }}
-        sudo OS_PROJECT_ID=${{ secrets.PROJECT_ID }}
-        sudo OS_PROJECT_NAME=${{ secrets.PROJECT_NAME }}
-        sudo OS_USER_DOMAIN_NAME=${{ secrets.USER_DOMAIN_NAME }}
-        sudo if [ -z "$OS_USER_DOMAIN_NAME" ]; then unset OS_USER_DOMAIN_NAME; fi
-        sudo OS_PROJECT_DOMAIN_ID=${{ secrets.PROJECT_DOMAIN_ID }}
-        sudo if [ -z "$OS_PROJECT_DOMAIN_ID" ]; then unset OS_PROJECT_DOMAIN_ID; fi
-        sudo unset OS_TENANT_ID
-        sudo unset OS_TENANT_NAME
-        sudo OS_USERNAME=${{ secrets.USERNAME }}
-        sudo OS_PASSWORD=${{ secrets.PASSWORD }}
-        sudo OS_REGION_NAME=${{ secrets.REGION_NAME }}
-        sudo if [ -z "$OS_REGION_NAME" ]; then unset OS_REGION_NAME; fi
-        sudo OS_INTERFACE=public
-        sudo OS_IDENTITY_API_VERSION=3
-        sudo openstack coe cluster list
-        sudo OS_CLUSTER_NAME=${{ secrets.CLUSTER_NAME }}
-        sudo openstack coe cluster config knative
+        export OS_AUTH_URL=${{ secrets.AUTH_URL }}
+        export OS_PROJECT_ID=${{ secrets.PROJECT_ID }}
+        export OS_PROJECT_NAME=${{ secrets.PROJECT_NAME }}
+        export OS_USER_DOMAIN_NAME=${{ secrets.USER_DOMAIN_NAME }}
+        if [ -z "$OS_USER_DOMAIN_NAME" ]; then unset OS_USER_DOMAIN_NAME; fi
+        export OS_PROJECT_DOMAIN_ID=${{ secrets.PROJECT_DOMAIN_ID }}
+        if [ -z "$OS_PROJECT_DOMAIN_ID" ]; then unset OS_PROJECT_DOMAIN_ID; fi
+        unset OS_TENANT_ID
+        unset OS_TENANT_NAME
+        export OS_USERNAME=${{ secrets.USERNAME }}
+        export OS_PASSWORD=${{ secrets.PASSWORD }}
+        export OS_REGION_NAME=${{ secrets.REGION_NAME }}
+        if [ -z "$OS_REGION_NAME" ]; then unset OS_REGION_NAME; fi
+        export OS_INTERFACE=public
+        export OS_IDENTITY_API_VERSION=3
+        openstack coe cluster list
+        openstack coe cluster config knative
 #     runs-on: ubuntu-latest
 #     steps:
 #     - name: Publish to Registry

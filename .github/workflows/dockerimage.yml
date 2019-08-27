@@ -45,7 +45,8 @@ jobs:
         export OS_INTERFACE=public
         export OS_IDENTITY_API_VERSION=3
         openstack coe cluster list
-        openstack coe cluster config ${{ secrets.CLUSTER_NAME }}
+        export OS_CLUSTER_NAME=${{ secrets.CLUSTER_NAME }}
+        openstack coe cluster config $OS_CLUSTER_NAME
 #     runs-on: ubuntu-latest
 #     steps:
 #     - name: Publish to Registry

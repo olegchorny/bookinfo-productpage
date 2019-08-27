@@ -29,7 +29,30 @@ jobs:
         sudo pip install wheel
         sudo pip install python-openstackclient
         sudo pip install python-magnumclient
-   
+        export OS_PROJECT_ID=6d88ff42d0784a64a47a40ecd8909ee6
+        
+        export OS_PROJECT_NAME=secrets.OS_PROJECT_NAME
+        export OS_USER_DOMAIN_NAME=secrets.OS_USER_DOMAIN_NAME
+        if [ -z "$OS_USER_DOMAIN_NAME" ]; then unset OS_USER_DOMAIN_NAME; fi
+        export OS_PROJECT_DOMAIN_ID="default"
+        if [ -z "$OS_PROJECT_DOMAIN_ID" ]; then unset OS_PROJECT_DOMAIN_ID; fi
+# unset v2.0 items in case set
+        unset OS_TENANT_ID
+        unset OS_TENANT_NAME
+# In addition to the owning entity (tenant), OpenStack stores the entity
+# performing the action as the **user**.
+# bu7oeNb7J4p7JQHgxqOL
+        export OS_USERNAME=secrets.OS_USERNAME
+# With Keystone you pass the keystone password.
+        export OS_PASSWORD=secrets.OS_PASSWORD
+# If your configuration has multiple regions, we set that information here.
+# OS_REGION_NAME is optional and only valid in certain environments.
+        export OS_REGION_NAME=secrets.OS_REGION_NAME
+# Don't leave a blank variable, unset it if it was empty
+        if [ -z "$OS_REGION_NAME" ]; then unset OS_REGION_NAME; fi
+        export OS_INTERFACE=public
+        export OS_IDENTITY_API_VERSION=3
+        openstack coe cluster list
 #     runs-on: ubuntu-latest
 #     steps:
 #     - name: Publish to Registry

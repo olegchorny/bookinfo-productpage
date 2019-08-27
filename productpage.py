@@ -205,7 +205,7 @@ def index():
 
 @app.route('/health')
 def health():
-    return 'Product page is healthy and komet works, Denis was here !!!'
+    return 'Product page is healthy'
 
 
 @app.route('/login', methods=['POST'])

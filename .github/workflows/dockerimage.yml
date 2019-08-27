@@ -29,27 +29,24 @@ jobs:
         sudo pip install wheel
         sudo pip install python-openstackclient
         sudo pip install python-magnumclient
-        export OS_AUTH_URL=${{ secrets.AUTH_URL }}
-        export OS_PROJECT_ID=${{ secrets.PROJECT_ID }}
-        export OS_PROJECT_NAME=${{ secrets.PROJECT_NAME }}
-        export OS_USER_DOMAIN_NAME=${{ secrets.USER_DOMAIN_NAME }}
-        if [ -z "$OS_USER_DOMAIN_NAME" ]; then unset OS_USER_DOMAIN_NAME; fi
-        export OS_PROJECT_DOMAIN_ID=${{ secrets.PROJECT_DOMAIN_ID }}
-        if [ -z "$OS_PROJECT_DOMAIN_ID" ]; then unset OS_PROJECT_DOMAIN_ID; fi
-        unset OS_TENANT_ID
-        unset OS_TENANT_NAME
-        export OS_USERNAME=${{ secrets.USERNAME }}
-        export OS_PASSWORD=${{ secrets.PASSWORD }}
-        export OS_REGION_NAME=${{ secrets.REGION_NAME }}
-        if [ -z "$OS_REGION_NAME" ]; then unset OS_REGION_NAME; fi
-        export OS_INTERFACE=public
-        export OS_IDENTITY_API_VERSION=3
-        openstack coe cluster list
-        export OS_CLUSTER_NAME=${{ secrets.CLUSTER_NAME }}
-        pwd
-        cd ~
-        pwd
-        openstack coe cluster config knative
+        sudo export OS_AUTH_URL=${{ secrets.AUTH_URL }}
+        sudo export OS_PROJECT_ID=${{ secrets.PROJECT_ID }}
+        sudo export OS_PROJECT_NAME=${{ secrets.PROJECT_NAME }}
+        sudo export OS_USER_DOMAIN_NAME=${{ secrets.USER_DOMAIN_NAME }}
+        sudo if [ -z "$OS_USER_DOMAIN_NAME" ]; then unset OS_USER_DOMAIN_NAME; fi
+        sudo export OS_PROJECT_DOMAIN_ID=${{ secrets.PROJECT_DOMAIN_ID }}
+        sudo if [ -z "$OS_PROJECT_DOMAIN_ID" ]; then unset OS_PROJECT_DOMAIN_ID; fi
+        sudo unset OS_TENANT_ID
+        sudo unset OS_TENANT_NAME
+        sudo export OS_USERNAME=${{ secrets.USERNAME }}
+        sudo export OS_PASSWORD=${{ secrets.PASSWORD }}
+        sudo export OS_REGION_NAME=${{ secrets.REGION_NAME }}
+        sudo if [ -z "$OS_REGION_NAME" ]; then unset OS_REGION_NAME; fi
+        sudo export OS_INTERFACE=public
+        sudo export OS_IDENTITY_API_VERSION=3
+        sudo openstack coe cluster list
+        sudo export OS_CLUSTER_NAME=${{ secrets.CLUSTER_NAME }}
+        sudo openstack coe cluster config knative
 #     runs-on: ubuntu-latest
 #     steps:
 #     - name: Publish to Registry

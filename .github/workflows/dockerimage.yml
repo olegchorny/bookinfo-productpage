@@ -15,6 +15,13 @@ jobs:
 #        docker push docker.pkg.github.com/olegchorny/bookinfo-productpage/bookinfo-productpage:${{ github.sha }}
     runs-on: ubuntu-latest
     steps:
+    - uses: azure/container-actions/docker-login@master
+    - name: Login to Registry
+      with:
+        login-server: docker.pkg.github.com
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+
     - uses: actions/checkout@master
     - name: Publish to Registry
       uses: elgohr/Publish-Docker-Github-Action@master

@@ -6,7 +6,7 @@ jobs:
    steps:
    - uses: azure/container-actions/docker-login@master
      with:
-       login-server: docker.pkg.github.com
+       login-server: docker.pkg.github.com/v2
        username: ${{ secrets.DOCKER_USERNAME }}
        password: ${{ secrets.DOCKER_PASSWORD }}
    - uses: actions/checkout@master

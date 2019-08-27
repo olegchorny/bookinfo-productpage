@@ -15,7 +15,7 @@ jobs:
    - name: Push
      run: |
        docker login docker.pkg.github.com -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-       docker push docker.pkg.github.com/olegchorny/bookinfo-productpage/bookinfo-productpage:latest
+       docker push docker.pkg.github.com/olegchorny/bookinfo-productpage/bookinfo-productpage:${{ github.sha[0..7] }}
 #     runs-on: ubuntu-latest
 #     steps:
 #     - name: Publish to Registry

@@ -60,7 +60,7 @@ jobs:
        kubectl get pods --all-namespaces
        kubectl create secret docker-registry demo-k8s-secret --docker-username ${{ secrets.DOCKER_USERNAME }} --docker-password ${{ secrets.DOCKER_PASSWORD }} --docker-server docker.pkg.github.com --dry-run -o yaml | kubectl apply -f -
        image=docker.pkg.github.com/$GITHUB_REPOSITORY/$app:$sha
-       cat ./deployment.yaml | sed "s/{{IMAGE}}/$image/g" | kubectl apply -f -
+       cat ./deployment.yaml | sed "s|{{IMAGE}}|$image|g" | kubectl apply -f -
        
 #    - uses: azure/k8s-actions/k8s-set-context@master
 #      with:

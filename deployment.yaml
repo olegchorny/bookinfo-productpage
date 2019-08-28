@@ -19,5 +19,5 @@ spec:
         image: $image
         ports:
         - containerPort: 8080
-  imagePullSecrets:
-  - name: demo-k8s-secret
+      imagePullSecrets:
+      - name: demo-k8s-secret

@@ -60,6 +60,8 @@ jobs:
        sudo add-apt-repository ppa:rmescandon/yq
        sudo apt update
        sudo apt install yq -y
+       sha=${GITHUB_SHA:0:7}
+       app="${GITHUB_REPOSITORY#*/}"
        yq w ./deployment.yaml spec.template.spec.containers.image "docker.pkg.github.com/$GITHUB_REPOSITORY/$app:$sha"
        kubectl apply -f ./deployment.yaml
        kubectl get pods --all-namespaces

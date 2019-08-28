@@ -21,3 +21,16 @@ spec:
         - containerPort: 8080
       imagePullSecrets:
       - name: demo-k8s-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bookinfo-productpage
+spec:
+  selector:
+    app: bookinfo-productpage
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: LoadBalancer

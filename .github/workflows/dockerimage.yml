@@ -62,8 +62,7 @@ jobs:
        sudo apt install yq -y
        sha=${GITHUB_SHA:0:7}
        app="${GITHUB_REPOSITORY#*/}"
-       yq w ./deployment.yaml spec.template.spec.containers.image "docker.pkg.github.com/$GITHUB_REPOSITORY/$app:$sha"
-       kubectl apply -f ./deployment.yaml
+       yq w ./deployment.yaml spec.template.spec.containers.image "docker.pkg.github.com/$GITHUB_REPOSITORY/$app:$sha" | kubectl apply -f -
        kubectl get pods --all-namespaces
        kubectl get deployments --all-namespaces
        

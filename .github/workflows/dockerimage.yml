@@ -45,8 +45,8 @@ jobs:
         export OS_INTERFACE=public
         export OS_IDENTITY_API_VERSION=3
         openstack coe cluster list
-        openstack coe cluster show knative
-        $(openstack coe cluster config knative) &
+        openstack coe cluster show ${{ secrets.CLUSTER_NAME }}
+        $(openstack coe cluster config ${{ secrets.CLUSTER_NAME }}) &
    - name: Kubectl
      run: |
        sudo apt-get update && sudo apt-get install -y apt-transport-https

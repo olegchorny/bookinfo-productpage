@@ -46,7 +46,7 @@ jobs:
         export OS_IDENTITY_API_VERSION=3
         openstack coe cluster list
         openstack coe cluster show knative
-        $(openstack coe cluster config knative) 
+        $(openstack coe cluster config knative) &
 #     runs-on: ubuntu-latest
 #     steps:
 #     - name: Publish to Registry

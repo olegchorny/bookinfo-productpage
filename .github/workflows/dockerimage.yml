@@ -65,6 +65,7 @@ jobs:
        yq w ./deployment.yaml spec.template.spec.containers[0].image docker.pkg.github.com/$GITHUB_REPOSITORY/$app:$sha | kubectl apply -f -
        kubectl get pods --all-namespaces
        kubectl get deployments --all-namespaces
+       kubectl get svc --all-namespaces
        
 #    - uses: azure/k8s-actions/k8s-set-context@master
 #      with:

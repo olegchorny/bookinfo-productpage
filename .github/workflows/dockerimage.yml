@@ -69,11 +69,12 @@ jobs:
    - uses: azure/k8s-actions/k8s-deploy@master
      with:
        manifests: |
-         ./deployment.yml
+         ./deployment.yaml
        images: |
          docker.pkg.github.com/$GITHUB_REPOSITORY/$app:$sha
        imagepullsecrets: |
          demo-k8s-secret
+         
 #     runs-on: ubuntu-latest
 #     steps:
 #     - name: Publish to Registry

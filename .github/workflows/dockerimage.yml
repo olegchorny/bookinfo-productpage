@@ -58,7 +58,7 @@ jobs:
        sudo apt-get install -y kubectl
        export KUBECONFIG=./config
        kubectl get pods --all-namespaces
-       kubectl create secret docker-registry demo-k8s-secret --docker-username ${{ secrets.DOCKER_USERNAME }} --docker-password ${{ secrets.DOCKER_PASSWORD }} --docker-server docker.pkg.github.com --docker-email
+       kubectl create secret docker-registry demo-k8s-secret --docker-username ${{ secrets.DOCKER_USERNAME }} --docker-password ${{ secrets.DOCKER_PASSWORD }} --docker-server docker.pkg.github.com
        image=docker.pkg.github.com/$GITHUB_REPOSITORY/$app:$sha
        manifest=`cat ".deployment.yaml" | sed "s/nginx/$image/g"`
        echo "$manifest" | kubectl apply -f -

@@ -19,3 +19,5 @@ spec:
         image: nginx
         ports:
         - containerPort: 8080
+  imagePullSecrets:
+  - name: demo-k8s-secret

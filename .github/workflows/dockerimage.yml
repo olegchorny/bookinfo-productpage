@@ -58,10 +58,11 @@ jobs:
        sudo apt-get install -y kubectl
        export KUBECONFIG=./config
        kubectl get pods --all-namespaces
+       KUBE_CONFIG=`cat ./config`
    
    - uses: azure/k8s-actions/k8s-set-context@master
      with:
-       kubeconfig: $KUBECONFIG
+       kubeconfig: $KUBE_CONFIG
    
    - uses: azure/k8s-actions/k8s-create-secret@master
      with:

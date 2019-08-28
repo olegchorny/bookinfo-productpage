@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: productpage
-        image: ${image}
+        image: {{IMAGE}}
         ports:
         - containerPort: 8080
   imagePullSecrets:

@@ -58,6 +58,7 @@ jobs:
 #         openstack coe cluster list
 #         openstack coe cluster show ${{ secrets.CLUSTER_NAME }}
 #         $(openstack coe cluster config ${{ secrets.CLUSTER_NAME }}) &
+   
    - name: Kubectl
      run: |
        sudo apt-get update && sudo apt-get install -y apt-transport-https

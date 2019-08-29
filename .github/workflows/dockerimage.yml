@@ -22,6 +22,8 @@ jobs:
        OS_USERNAME: ${{ secrets.USERNAME}}
        OS_PASSWORD: ${{ secrets.PASSWORD }}
        OS_REGION_NAME: ${{ secrets.REGION_NAME }}
+       OS_INTERFACE: public
+       OS_IDENTITY_API_VERSION: 3
    
    #
    - uses: actions/checkout@master

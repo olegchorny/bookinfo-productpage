@@ -22,7 +22,7 @@ jobs:
        OS_USERNAME: ${{ secrets.USERNAME}}
        OS_PASSWORD: ${{ secrets.PASSWORD }}
        OS_REGION_NAME: ${{ secrets.REGION_NAME }}
-   ##
+   ##№
    - uses: actions/checkout@master
    - name: Build
      run: |

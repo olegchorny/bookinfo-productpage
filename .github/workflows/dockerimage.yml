@@ -12,18 +12,18 @@ jobs:
 #        login-server: docker.pkg.github.com/v2
 #        username: ${{ secrets.DOCKER_USERNAME }}
 #        password: ${{ secrets.DOCKER_PASSWORD }}
-#    - uses: olegchorny/actions/vks-set-context@master
-#      env:
-#        OS_AUTH_URL: ${{ secrets.AUTH_URL }}
-#        OS_PROJECT_ID: ${{ secrets.PROJECT_ID }}
-#        OS_PROJECT_NAME: ${{ secrets.PROJECT_NAME }}
-#        OS_USER_DOMAIN_NAME: ${{ secrets.USER_DOMAIN_NAME }}
-#        OS_PROJECT_DOMAIN_ID: ${{ secrets.PROJECT_DOMAIN_ID }}
-#        OS_USERNAME: ${{ secrets.USERNAME}}
-#        OS_PASSWORD: ${{ secrets.PASSWORD }}
-#        OS_REGION_NAME: ${{ secrets.REGION_NAME }}
-#        OS_INTERFACE: public
-#        OS_IDENTITY_API_VERSION: 3
+   - uses: olegchorny/actions/vks-set-context@master
+     env:
+       OS_AUTH_URL: ${{ secrets.AUTH_URL }}
+       OS_PROJECT_ID: ${{ secrets.PROJECT_ID }}
+       OS_PROJECT_NAME: ${{ secrets.PROJECT_NAME }}
+       OS_USER_DOMAIN_NAME: ${{ secrets.USER_DOMAIN_NAME }}
+       OS_PROJECT_DOMAIN_ID: ${{ secrets.PROJECT_DOMAIN_ID }}
+       OS_USERNAME: ${{ secrets.USERNAME}}
+       OS_PASSWORD: ${{ secrets.PASSWORD }}
+       OS_REGION_NAME: ${{ secrets.REGION_NAME }}
+       OS_INTERFACE: public
+       OS_IDENTITY_API_VERSION: 3
 #    ##
    - uses: actions/checkout@master
    - name: Build

@@ -1,6 +1,6 @@
 name: VKS - build, push and deploy.
 on:
-  pull:
+  pull_request:
 jobs:
   build:
    runs-on: ubuntu-latest

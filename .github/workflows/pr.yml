@@ -1,0 +1,73 @@
+name: VKS - build, push and deploy.
+on:
+  pull:
+jobs:
+  build:
+   runs-on: ubuntu-latest
+   steps:
+   - uses: actions/checkout@master
+   - uses: engineerd/setup-kind@v0.1.0
+   - name: Build
+     run: |
+       sha=${GITHUB_SHA:0:7}
+       app="${GITHUB_REPOSITORY#*/}"
+       docker build -t docker.pkg.github.com/$GITHUB_REPOSITORY/$app:$sha .
+   - name: Push
+     run: |
+       sha=${GITHUB_SHA:0:7}
+       app="${GITHUB_REPOSITORY#*/}"
+       docker login docker.pkg.github.com -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+       docker push docker.pkg.github.com/$GITHUB_REPOSITORY/$app:$sha   
+   - name: Testing
+      run: |
+        export KUBECONFIG="$(kind get kubeconfig-path)"
+        kubectl cluster-info
+        kubectl get pods -n kube-system
+#   - name: Kubectl
+#     run: |
+#       sudo apt-get update && sudo apt-get install -y apt-transport-https
+#       curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+#       echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
+#       sudo apt-get update
+#       sudo apt-get install -y kubectl
+#       export KUBECONFIG=./config
+#       kubectl get pods --all-namespaces
+#       kubectl create secret docker-registry demo-k8s-secret --docker-username ${{ secrets.DOCKER_USERNAME }} --docker-password ${{ secrets.DOCKER_PASSWORD }} --docker-server docker.pkg.github.com --dry-run -o yaml | kubectl apply -f -
+#       sudo add-apt-repository ppa:rmescandon/yq
+#       sudo apt update
+#       sudo apt install yq -y
+#       sha=${GITHUB_SHA:0:7}
+#       app="${GITHUB_REPOSITORY#*/}"
+#       yq w ./deployment.yaml spec.template.spec.containers[0].image docker.pkg.github.com/$GITHUB_REPOSITORY/$app:$sha | kubectl apply -f -
+#       kubectl get pods --all-namespaces
+#       kubectl get deployments --all-namespaces
+#       kubectl get svc --all-namespaces
+       
+#    - uses: azure/k8s-actions/k8s-set-context@master
+#      with:
+#        kubeconfig: $KUBE_CONFIG
+   
+#    - uses: azure/k8s-actions/k8s-create-secret@master
+#      with:
+#         container-registry-url: docker.pkg.github.com
+#         container-registry-username: ${{ secrets.DOCKER_USERNAME }}
+#         container-registry-password: ${{ secrets.DOCKER_PASSWORD }}
+#         secret-name: demo-k8s-secret
+   
+#    - uses: azure/k8s-actions/k8s-deploy@master
+#      with:
+#        manifests: |
+#          ./deployment.yaml
+#        images: |
+#          docker.pkg.github.com/$GITHUB_REPOSITORY/$app:$sha
+#        imagepullsecrets: |
+#          demo-k8s-secret
+         
+#     runs-on: ubuntu-latest
+#     steps:
+#     - name: Publish to Registry
+#       uses: elgohr/Publish-Docker-Github-Action@master
+#       with:
+#         name: docker.pkg.github.com/olegchorny/bookinfo-productpage/bookinfo-productpage
+#         username: ${{ secrets.DOCKER_USERNAME }}
+#         password: ${{ secrets.DOCKER_PASSWORD }}

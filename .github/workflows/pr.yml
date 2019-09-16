@@ -41,6 +41,7 @@ jobs:
      run: |
        export KUBECONFIG="$(kind get kubeconfig-path)"
        kubectl get pods --all-namespaces
+       kubectl describe pods 
    
 #   - name: Kubectl
 #     run: |

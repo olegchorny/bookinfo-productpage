@@ -32,6 +32,7 @@ jobs:
        sudo apt update
        sudo apt install yq -y
        yq w $GITHUB_WORKSPACE/deployment.yaml spec.template.spec.containers[0].image docker.pkg.github.com/$GITHUB_REPOSITORY/$app:$sha | kubectl apply -f -
+       kubectl get deployment bookinfo-productpage -o yaml
    - name: Sleep for 60 seconds
      uses: jakejarvis/wait-action@master
      with:

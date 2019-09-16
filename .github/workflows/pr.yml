@@ -22,23 +22,24 @@ jobs:
        docker push docker.pkg.github.com/$GITHUB_REPOSITORY/$app:$sha   
    - name: Deploy
      run: |
-        export KUBECONFIG="$(kind get kubeconfig-path)"
-        kubectl cluster-info
-        kubectl get pods -n kube-system
-        kubectl create secret docker-registry demo-k8s-secret --docker-username ${{ secrets.DOCKER_USERNAME }} --docker-password ${{ secrets.DOCKER_PASSWORD }} --docker-server docker.pkg.github.com --dry-run -o yaml | kubectl apply -f -
-        sha=${GITHUB_SHA:0:7}
-        app="${GITHUB_REPOSITORY#*/}"
-        sudo add-apt-repository ppa:rmescandon/yq
-        sudo apt update
-        sudo apt install yq -y
-        yq w $GITHUB_WORKSPACE/deployment.yaml spec.template.spec.containers[0].image docker.pkg.github.com/$GITHUB_REPOSITORY/$app:$sha | kubectl apply -f -
+       export KUBECONFIG="$(kind get kubeconfig-path)"
+       kubectl cluster-info
+       kubectl get pods -n kube-system
+       kubectl create secret docker-registry demo-k8s-secret --docker-username ${{ secrets.DOCKER_USERNAME }} --docker-password ${{ secrets.DOCKER_PASSWORD }} --docker-server docker.pkg.github.com --dry-run -o yaml | kubectl apply -f -
+       sha=${GITHUB_SHA:0:7}
+       app="${GITHUB_REPOSITORY#*/}"
+       sudo add-apt-repository ppa:rmescandon/yq
+       sudo apt update
+       sudo apt install yq -y
+       yq w $GITHUB_WORKSPACE/deployment.yaml spec.template.spec.containers[0].image docker.pkg.github.com/$GITHUB_REPOSITORY/$app:$sha | kubectl apply -f -
    - name: Sleep for 60 seconds
      uses: jakejarvis/wait-action@master
      with:
        time: '60s'
    - name: Check
      run: |
-        kubectl get pods --all-namespaces
+       export KUBECONFIG="$(kind get kubeconfig-path)"
+       kubectl get pods --all-namespaces
    
 #   - name: Kubectl
 #     run: |

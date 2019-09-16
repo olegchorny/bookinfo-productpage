@@ -19,7 +19,7 @@ jobs:
        docker login docker.pkg.github.com -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
        docker push docker.pkg.github.com/$GITHUB_REPOSITORY/$app:$sha   
    - name: Testing
-      run: |
+     run: |
         export KUBECONFIG="$(kind get kubeconfig-path)"
         kubectl cluster-info
         kubectl get pods -n kube-system

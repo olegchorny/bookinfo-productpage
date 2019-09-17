@@ -9,6 +9,13 @@ jobs:
      uses: actions/checkout@master
    - name: Setup k8s cluster
      uses: engineerd/setup-kind@v0.1.0
+   - name: Setup docker registry secret 
+     uses: azure/k8s-actions/k8s-create-secret@master
+     with:
+       container-registry-url: docker.pkg.github.com
+       container-registry-username: ${{ secrets.REGISTRY_USERNAME }}
+       container-registry-password: ${{ secrets.REGISTRY_PASSWORD }}
+       secret-name: registry-secret
    - name: Build
      run: |
        sha=${GITHUB_SHA:0:7}

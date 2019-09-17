@@ -14,6 +14,8 @@ jobs:
        sha=${GITHUB_SHA:0:7}
        app="${GITHUB_REPOSITORY#*/}"
        docker build -t docker.pkg.github.com/$GITHUB_REPOSITORY/$app:$sha .
+       docker build -t $app:$sha ./my-image-dir
+       kind load docker-image $app:$sha
    - name: Push
      run: |
        sha=${GITHUB_SHA:0:7}
@@ -45,6 +47,7 @@ jobs:
      run: |
        export KUBECONFIG="$(kind get kubeconfig-path)"
        sha=${GITHUB_SHA:0:7} && app="${GITHUB_REPOSITORY#*/}" && kubectl create deployment $app --image=docker.pkg.github.com/$GITHUB_REPOSITORY/$app:$sha --dry-run -o yaml | kubectl apply -f -
+       sha=${GITHUB_SHA:0:7} && app="${GITHUB_REPOSITORY#*/}" && kubectl create deployment $app-$sha --image=$app:$sha ---dry-run -o yaml | kubectl apply -f -
    - name: Sleep for 60 seconds
      uses: jakejarvis/wait-action@master
      with:

@@ -36,7 +36,7 @@ jobs:
    - name: Create secret
      run: |
        export KUBECONFIG="$(kind get kubeconfig-path)"
-       kubectl create secret docker-registry registry-secret --docker-username ${{ secrets.DOCKER_USERNAME }} --docker-password ${{ secrets.DOCKER_PASSWORD }} --docker-server docker.pkg.github.com --dry-run -o yaml | kubectl apply -f -
+       kubectl create secret docker-registry registry-secret --docker-username ${{ secrets.DOCKER_USERNAME }} --docker-password ${{ secrets.DOCKER_PASSWORD }} --docker-server docker.pkg.github.com/v2/ --dry-run -o yaml | kubectl apply -f -
    - name: Patch service account to use imagePullSecret
      run: |
        export KUBECONFIG="$(kind get kubeconfig-path)"

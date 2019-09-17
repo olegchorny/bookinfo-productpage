@@ -33,18 +33,18 @@ jobs:
 #        sudo apt install yq -y
 #        yq w $GITHUB_WORKSPACE/deployment.yaml spec.template.spec.containers[0].image docker.pkg.github.com/$GITHUB_REPOSITORY/$app:$sha | kubectl apply -f -
 #        kubectl get deployment bookinfo-productpage -o yaml
-    - name: Create secret
-      run: |
-        export KUBECONFIG="$(kind get kubeconfig-path)"
-        kubectl create secret registry-secret demo-k8s-secret --docker-username ${{ secrets.DOCKER_USERNAME }} --docker-password ${{ secrets.DOCKER_PASSWORD }} --docker-server docker.pkg.github.com --dry-run -o yaml | kubectl apply -f -
-    - name: Patch service account to use imagePullSecret
-      run: |
-        export KUBECONFIG="$(kind get kubeconfig-path)"
-        kubectl patch serviceaccount default -p '{"imagePullSecrets": [{"name": "registry-secret"}]}'
-    - name: Deployment 
-      run: |
-        export KUBECONFIG="$(kind get kubeconfig-path)"
-        sha=${GITHUB_SHA:0:7} && app="${GITHUB_REPOSITORY#*/}" && kubectl create deployment $app --image=docker.pkg.github.com/$GITHUB_REPOSITORY/$app:$sha -n $GITHUB_SHA --dry-run -o yaml | kubectl apply -f -
+   - name: Create secret
+     run: |
+       export KUBECONFIG="$(kind get kubeconfig-path)"
+       kubectl create secret registry-secret demo-k8s-secret --docker-username ${{ secrets.DOCKER_USERNAME }} --docker-password ${{ secrets.DOCKER_PASSWORD }} --docker-server docker.pkg.github.com --dry-run -o yaml | kubectl apply -f -
+   - name: Patch service account to use imagePullSecret
+     run: |
+       export KUBECONFIG="$(kind get kubeconfig-path)"
+       kubectl patch serviceaccount default -p '{"imagePullSecrets": [{"name": "registry-secret"}]}'
+   - name: Deployment 
+     run: |
+       export KUBECONFIG="$(kind get kubeconfig-path)"
+       sha=${GITHUB_SHA:0:7} && app="${GITHUB_REPOSITORY#*/}" && kubectl create deployment $app --image=docker.pkg.github.com/$GITHUB_REPOSITORY/$app:$sha -n $GITHUB_SHA --dry-run -o yaml | kubectl apply -f -
    - name: Sleep for 60 seconds
      uses: jakejarvis/wait-action@master
      with:
